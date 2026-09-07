@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI Developer Portfolio - LLM/SLM, RAG, Agent, Deep Learning, Frontend,Backend" />
+  <title>withlionbuddha | AI Developer Portfolio</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">withlionbuddha</a>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="https://github.com/withlionbuddha" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">AI DEVELOPER PORTFOLIO</p>
+        <h1>SLM · RAG · Agent · Deep Learning · Backend · ...</h1>
+        <p class="hero-copy">
+          Learning is the worth of happiness, the joy of dignity, the companion of truth, the certainty of life, the law of glory, and the monument we leave of ourselves.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#projects">프로젝트 보기</a>
+          <a class="button secondary" href="blog/index.html">기술 블로그</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">ABOUT</p>
+          <h2>AI System Engineering</h2>
+        </div>
+        <div class="about-grid">
+          <p>
+            PyTorch 기반 언어모델 학습, NumPy 기반 신경망 직접 구현, RAG/Agent 서비스,
+            Spring 및 REST API 기반 백엔드 개발을 중심으로 프로젝트를 구성합니다.
+          </p>
+          <p>
+            데이터 처리, 학습 파이프라인, 테스트, API, Docker/Nginx,
+            운영 구조까지 설명 가능한 결과물을 지향합니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section alt">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">FEATURED PROJECTS</p>
+          <h2>프로젝트</h2>
+        </div>
+
+        <div class="card-grid">
+          <article class="card">
+            <p class="card-number">01</p>
+            <h3>Decoder-only SLM</h3>
+            <p>
+              PyTorch 기반 Decoder-only 언어모델 학습 파이프라인 구현.
+              SentencePiece BPE, Causal Mask, Transformer Decoder, 학습/검증 루프 구성.
+            </p>
+            <div class="tags">
+              <span>PyTorch</span><span>Transformer</span><span>SentencePiece</span><span>SLM</span>
+            </div>
+            <div class="card-links">
+              <a href="projects/slm.html">상세 보기</a>
+              <a href="https://github.com/withlionbuddha" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <p class="card-number">02</p>
+            <h3>Fully Connected Neural Network</h3>
+            <p>
+              NumPy만으로 Forward, Backpropagation, Activation, Loss, Optimizer를 구현하고
+              단위 테스트를 통해 신경망 내부 동작을 검증한 프로젝트.
+            </p>
+            <div class="tags">
+              <span>NumPy</span><span>Backpropagation</span><span>Unit Test</span><span>OOP</span>
+            </div>
+            <div class="card-links">
+              <a href="projects/fcdnn.html">상세 보기</a>
+              <a href="https://github.com/withlionbuddha/fullyconnectedneuralnetworks" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <p class="card-number">03</p>
+            <h3>RAG & Agent Service (진행중)</h3>
+            <p>
+              LLM, Vector DB, 검색 파이프라인과 Agent 흐름을 결합해 실제 서비스 형태로 확장하는 프로젝트.
+            </p>
+            <div class="tags">
+              <span>LangChain</span><span>LangGraph</span><span>RAG</span><span>FastAPI</span>
+            </div>
+            <div class="card-links">
+              <a href="projects/rag-agent.html">상세 보기</a>
+              <a href="https://github.com/withlionbuddha" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">TECH STACK</p>
+          <h2>기술 역량</h2>
+        </div>
+
+        <div class="skill-grid">
+          <div>
+            <h3>AI / ML</h3>
+            <p>Python, PyTorch, NumPy, Transformer, SLM, (RAG, Agent 공부중)</p>
+          </div>
+          <div>
+            <h3>Backend</h3>
+            <p>Spring Boot, REST API, Django, PostgreSQL</p>
+          </div>
+          <div>
+            <h3>DevOps</h3>
+            <p>Docker, Nginx,Tomcat, Linux, GitHub Actions</p>
+          </div>
+          <div>
+            <h3>Engineering</h3>
+            <p>OOP, SOLID, Unit Test, Architecture, API Integration</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">TECHNICAL BLOG</p>
+          <h2>배우고 이해한 기술을 기록</h2>
+        </div>
+
+        <div class="post-list">
+          <a class="post-item" href="blog/index.html">
+            <span>Transformer</span>
+            <strong>Multi-Head Attention에서 텐서 shape 추적하기</strong>
+          </a>
+          <a class="post-item" href="blog/index.html">
+            <span>Deep Learning</span>
+            <strong>Backpropagation을 NumPy로 직접 구현하며 이해한 것</strong>
+          </a>
+          <a class="post-item" href="blog/index.html">
+            <span>Architecture</span>
+            <strong>Architecture Style → Design Approach → Design Role → GoF Design Pattern으로 이어지는 단계적 소프트웨어 설계</strong>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© 2026 withlionbuddha</p>
+      <div>
+        <a href="https://github.com/withlionbuddha" target="_blank" rel="noopener">GitHub</a>
+        <a href="blog/index.html">Blog</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
