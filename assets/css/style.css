@@ -59,7 +59,7 @@ a {
 }
 
 .hero {
-  padding: 120px 0 96px;
+  padding: 120px 0 48px;
   border-bottom: 1px solid #eceff1;
 }
 
@@ -132,13 +132,13 @@ a {
 }
 
 #certifications {
-  padding-top: 96px;
-  padding-bottom: 112px;
+  padding-top: 48px;
+  padding-bottom: 56px;
 }
 
 #about {
-  padding-top: 96px;
-  padding-bottom: 112px;
+  padding-top: 48px;
+  padding-bottom: 56px;
 }
 
 .alt {
@@ -340,13 +340,13 @@ a {
   }
 
   #certifications {
-    padding-top: 64px;
-    padding-bottom: 72px;
+    padding-top: 32px;
+    padding-bottom: 36px;
   }
 
   #about {
-    padding-top: 64px;
-    padding-bottom: 72px;
+    padding-top: 32px;
+    padding-bottom: 36px;
   }
 
   .card-grid,
