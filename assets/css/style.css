@@ -124,6 +124,14 @@ a {
   padding: 32px 0;
 }
 
+#certifications {
+  padding-bottom: 8px;
+}
+
+#about {
+  padding-top: 8px;
+}
+
 .homepage-sections .section-ratio-3 {
   padding: 64px 0;
 }
@@ -318,6 +326,14 @@ a {
   .homepage-sections .section,
   .homepage-sections .section-ratio-3 {
     padding: 40px 0;
+  }
+
+  #certifications {
+    padding-bottom: 12px;
+  }
+
+  #about {
+    padding-top: 12px;
   }
 
   .card-grid,
