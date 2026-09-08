@@ -59,7 +59,7 @@ a {
 }
 
 .hero {
-  padding: 120px 0 48px;
+  padding: 120px 0 64px;
   border-bottom: 1px solid #eceff1;
 }
 
@@ -117,25 +117,18 @@ a {
 }
 
 .homepage-sections {
-  margin-top: -72px;
+  margin-top: 0;
 }
 
-.homepage-sections .section {
-  padding: 32px 0;
-}
-
-#certifications {
-  padding-bottom: 48px;
-}
-
-#about {
-  padding-top: 48px;
-  transform: none;
-  margin-bottom: 0;
-}
-
+.homepage-sections .section,
 .homepage-sections .section-ratio-3 {
   padding: 64px 0;
+}
+
+#certifications,
+#about {
+  transform: none;
+  margin: 0;
 }
 
 .alt {
@@ -147,7 +140,7 @@ a {
 }
 
 .homepage-sections .section-heading {
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 }
 
 .section-heading h2 {
@@ -322,22 +315,18 @@ a {
   }
 
   .homepage-sections {
-    margin-top: -32px;
+    margin-top: 0;
   }
 
   .homepage-sections .section,
   .homepage-sections .section-ratio-3 {
-    padding: 40px 0;
+    padding: 48px 0;
   }
 
-  #certifications {
-    padding-bottom: 32px;
-  }
-
+  #certifications,
   #about {
-    padding-top: 32px;
     transform: none;
-    margin-bottom: 0;
+    margin: 0;
   }
 
   .card-grid,
