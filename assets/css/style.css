@@ -125,11 +125,13 @@ a {
 }
 
 #certifications {
-  padding-bottom: 8px;
+  padding-bottom: 0;
 }
 
 #about {
-  padding-top: 8px;
+  padding-top: 0;
+  transform: translateY(-48px);
+  margin-bottom: -48px;
 }
 
 .homepage-sections .section-ratio-3 {
@@ -329,11 +331,13 @@ a {
   }
 
   #certifications {
-    padding-bottom: 12px;
+    padding-bottom: 0;
   }
 
   #about {
-    padding-top: 12px;
+    padding-top: 0;
+    transform: translateY(-24px);
+    margin-bottom: -24px;
   }
 
   .card-grid,
