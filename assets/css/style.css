@@ -116,11 +116,18 @@ a {
   padding: 88px 0;
 }
 
-#about {
-  padding: 56px 0;
+.homepage-sections {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 3fr);
+  min-height: 1000px;
 }
 
-#about + .section {
+.homepage-sections .section {
+  min-height: 0;
+  padding: 40px 0;
+}
+
+.homepage-sections .section-ratio-3 {
   padding: 56px 0;
 }
 
@@ -130,6 +137,10 @@ a {
 
 .section-heading {
   margin-bottom: 36px;
+}
+
+.homepage-sections .section-heading {
+  margin-bottom: 22px;
 }
 
 .section-heading h2 {
@@ -301,6 +312,16 @@ a {
 @media (max-width: 820px) {
   .nav {
     display: none;
+  }
+
+  .homepage-sections {
+    display: block;
+    min-height: 0;
+  }
+
+  .homepage-sections .section,
+  .homepage-sections .section-ratio-3 {
+    padding: 48px 0;
   }
 
   .card-grid,
