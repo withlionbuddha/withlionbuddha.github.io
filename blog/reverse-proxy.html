@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reverse Proxy | Technical Blog | withlionbuddha</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    .article-wrap { max-width: 860px; }
+    .article-meta { margin: 16px 0 0; color:#667085; font-size:14px; }
+    .article-section { margin-top: 46px; }
+    .article-section h2 { margin:0 0 16px; font-size:30px; letter-spacing:-0.035em; }
+    .article-section h3 { margin:28px 0 10px; font-size:20px; letter-spacing:-0.02em; }
+    .article-section p { margin:0 0 16px; color:#344054; }
+    .source-note { margin-top:-6px !important; color:#667085 !important; font-size:13px; }
+    .flow, pre {
+      margin:18px 0 26px;
+      padding:18px 20px;
+      overflow:auto;
+      border:1px solid #e4e7ec;
+      border-radius:12px;
+      background:#f8fafc;
+      white-space:pre;
+      font: 13.5px/1.65 ui-monospace, SFMono-Regular, Consolas, monospace;
+      color:#1f2937;
+    }
+    .article-table {
+      width:100%;
+      margin:18px 0 30px;
+      border-collapse:collapse;
+      table-layout:fixed;
+      font-size:14px;
+    }
+    .article-table th {
+      padding:11px 12px;
+      text-align:center;
+      background:#111827;
+      color:#fff;
+      border:1px solid #111827;
+    }
+    .article-table td {
+      padding:12px;
+      vertical-align:middle;
+      border:1px solid #d0d5dd;
+      color:#344054;
+    }
+    .article-table td:first-child {
+      width:24%;
+      text-align:center;
+      font-weight:800;
+      color:#1f2937;
+      background:#f8fafc;
+    }
+    .references { padding-left:22px; }
+    .references li { margin:12px 0; }
+    .references a { color:#175cd3; text-decoration:underline; overflow-wrap:anywhere; }
+    .back-link { display:inline-block; margin-top:44px; font-weight:800; }
+    @media (max-width:820px) {
+      .article-section h2 { font-size:26px; }
+      .article-table { font-size:13px; }
+      .article-table th,.article-table td { padding:9px 8px; }
+      .article-table td:first-child { width:30%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../index.html">withlionbuddha</a>
+      <nav class="nav">
+        <a href="../index.html">Portfolio</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../blog/index.html">Blog</a>
+        <a href="https://github.com/withlionbuddha" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="page-hero">
+      <div class="container article-wrap">
+        <p class="eyebrow">TECHNICAL BLOG</p>
+        <h1>Reverse Proxy</h1>
+        <p class="hero-copy">Client와 Backend Server 사이의 요청 중계 구조와 구현 관점</p>
+        <p class="article-meta">Architecture · Network</p>
+      </div>
+    </section>
+    <section class="page-content">
+      <article class="container article-wrap">
+
+<section class="article-section">
+  <h2>1. 개념</h2>
+  <p>Reverse Proxy는 Web Server 앞에 위치하여 Client의 요청을 Web Server로 전달하는 서버 측 중계 구조이다. Client는 실제 Backend Server와 직접 통신하는 대신 서비스 전면의 Endpoint로 요청하고, Reverse Proxy가 해당 요청을 Backend Server로 전달한다.</p>
+  <p class="source-note">[출처: Cloudflare Reference Architecture, Securely deliver applications with Cloudflare]</p>
+</section>
+
+<section class="article-section">
+  <h2>2. 원리</h2>
+  <p>Client가 보낸 HTTP/HTTPS Request는 Frontend Server의 Reverse Proxy 계층에 도달한다. Proxy는 설정된 규칙에 따라 Request를 Backend Server로 전달하고, Backend가 생성한 Response를 다시 Client에 반환한다.</p>
+  <p class="source-note">[출처: Cloudflare Reference Architecture, Securely deliver applications with Cloudflare]</p>
+  <div class="flow">Client
+  ↓ HTTPS Request
+Frontend Server
+  ↓ Reverse Proxy
+Backend Server
+  ↑ Response
+Frontend Server
+  ↑
+Client</div>
+</section>
+
+<section class="article-section">
+  <h2>3. 상세 설명</h2>
+  <table class="article-table">
+    <thead><tr><th>항목</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td>Request Routing</td><td>요청 경로, Host 또는 기타 조건에 따라 하나 이상의 Backend Server로 전달할 수 있다. Layer 7 Routing, Load Balancing, TLS 종료 등의 기능은 구현 제품의 지원 범위에 따라 달라질 수 있다. [출처: Microsoft Azure Architecture Center, API gateways]</td></tr>
+      <tr><td>Backend 분리</td><td>Client가 사용하는 공개 Endpoint와 실제 Backend Server의 Host/Port를 분리할 수 있다. 내부 배치 구조를 외부 Client가 직접 알 필요가 없다.</td></tr>
+      <tr><td>HTTP Header</td><td>Proxy를 경유하면 Backend의 직접 연결 상대는 Proxy가 된다. Client IP, 원래 Host, Protocol 등의 정보가 필요하면 구현 제품에서 관련 Header 전달을 설정한다.</td></tr>
+      <tr><td>운영 고려</td><td>Timeout, Connection Pool, Health Check, Logging, 장애 격리 등은 제품과 시스템 요구사항에 따라 별도 설계한다.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="article-section">
+  <h2>4. 예</h2>
+  <h3>NGINX + Tomcat</h3>
+  <div class="flow">Client
+  ↓
+Web Server (NGINX)
+  ↓ /api/* Reverse Proxy
+Frontend Server (Tomcat)</div>
+  <pre><code>location /api/ {
+    proxy_pass http://frontend-server:8080;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+}</code></pre>
+  <p>NGINX의 <code>proxy_pass</code>와 <code>proxy_set_header</code> 같은 Directive는 구현 예에 해당한다. URI 전달 규칙과 Header 정책은 실제 NGINX 공식 문서를 기준으로 검증해야 한다.</p>
+</section>
+
+<section class="article-section">
+  <h2>5. 출처</h2>
+  <ol class="references">
+    <li>Cloudflare Reference Architecture, <em>Securely deliver applications with Cloudflare</em><br><a href="https://developers.cloudflare.com/reference-architecture/design-guides/secure-application-delivery/" target="_blank" rel="noopener">https://developers.cloudflare.com/reference-architecture/design-guides/secure-application-delivery/</a></li>
+    <li>Microsoft Azure Architecture Center, <em>API gateways</em><br><a href="https://learn.microsoft.com/azure/architecture/microservices/design/gateway" target="_blank" rel="noopener">https://learn.microsoft.com/azure/architecture/microservices/design/gateway</a></li>
+    <li>NGINX, <em>Module ngx_http_proxy_module</em><br><a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html" target="_blank" rel="noopener">https://nginx.org/en/docs/http/ngx_http_proxy_module.html</a></li>
+  </ol>
+</section>
+
+        <a class="back-link" href="../blog/index.html">← Engineering Notes</a>
+      </article>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© 2026 withlionbuddha</p>
+      <div><a href="../index.html">Home</a><a href="../blog/index.html">Blog</a></div>
+    </div>
+  </footer>
+</body>
+</html>

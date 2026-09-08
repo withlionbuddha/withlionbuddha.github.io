@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Same-Origin API Proxy | Technical Blog | withlionbuddha</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    .article-wrap { max-width: 860px; }
+    .article-meta { margin: 16px 0 0; color:#667085; font-size:14px; }
+    .article-section { margin-top: 46px; }
+    .article-section h2 { margin:0 0 16px; font-size:30px; letter-spacing:-0.035em; }
+    .article-section h3 { margin:28px 0 10px; font-size:20px; letter-spacing:-0.02em; }
+    .article-section p { margin:0 0 16px; color:#344054; }
+    .source-note { margin-top:-6px !important; color:#667085 !important; font-size:13px; }
+    .flow, pre {
+      margin:18px 0 26px;
+      padding:18px 20px;
+      overflow:auto;
+      border:1px solid #e4e7ec;
+      border-radius:12px;
+      background:#f8fafc;
+      white-space:pre;
+      font: 13.5px/1.65 ui-monospace, SFMono-Regular, Consolas, monospace;
+      color:#1f2937;
+    }
+    .article-table {
+      width:100%;
+      margin:18px 0 30px;
+      border-collapse:collapse;
+      table-layout:fixed;
+      font-size:14px;
+    }
+    .article-table th {
+      padding:11px 12px;
+      text-align:center;
+      background:#111827;
+      color:#fff;
+      border:1px solid #111827;
+    }
+    .article-table td {
+      padding:12px;
+      vertical-align:middle;
+      border:1px solid #d0d5dd;
+      color:#344054;
+    }
+    .article-table td:first-child {
+      width:24%;
+      text-align:center;
+      font-weight:800;
+      color:#1f2937;
+      background:#f8fafc;
+    }
+    .references { padding-left:22px; }
+    .references li { margin:12px 0; }
+    .references a { color:#175cd3; text-decoration:underline; overflow-wrap:anywhere; }
+    .back-link { display:inline-block; margin-top:44px; font-weight:800; }
+    @media (max-width:820px) {
+      .article-section h2 { font-size:26px; }
+      .article-table { font-size:13px; }
+      .article-table th,.article-table td { padding:9px 8px; }
+      .article-table td:first-child { width:30%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../index.html">withlionbuddha</a>
+      <nav class="nav">
+        <a href="../index.html">Portfolio</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../blog/index.html">Blog</a>
+        <a href="https://github.com/withlionbuddha" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="page-hero">
+      <div class="container article-wrap">
+        <p class="eyebrow">TECHNICAL BLOG</p>
+        <h1>Same-Origin API Proxy</h1>
+        <p class="hero-copy">Browser의 Same-Origin Policy를 고려한 Frontend-API 배포 구성</p>
+        <p class="article-meta">Architecture · Network</p>
+      </div>
+    </section>
+    <section class="page-content">
+      <article class="container article-wrap">
+
+<section class="article-section">
+  <h2>1. 개념</h2>
+  <p>“Same-Origin API Proxy”는 Web 표준에서 독립적으로 정의된 공식 Architecture Pattern 명칭으로 확인되지 않는다. 본 문서에서는 Frontend Resource와 API를 Browser 관점에서 동일한 Origin으로 노출하기 위해 Proxy를 사용하는 배포 구성을 의미한다.</p>
+  <p>Same-Origin Policy는 한 Origin에서 로드된 Document 또는 Script가 다른 Origin의 Resource와 상호작용하는 방식을 제한하는 Browser 보안 메커니즘이다. Origin은 Scheme, Host, Port로 결정된다.</p>
+  <p class="source-note">[출처: MDN Web Docs, Same-origin policy]</p>
+</section>
+
+<section class="article-section">
+  <h2>2. 원리</h2>
+  <p>Frontend와 API의 외부 URL을 동일한 Scheme, Host, Port로 제공하고 Path만 분리한다. Browser는 동일 Origin으로 판단하며, Server 측에서는 /api/* Request를 별도의 Backend Server로 Proxy할 수 있다.</p>
+  <p class="source-note">[출처: MDN Web Docs, Same-origin policy]</p>
+  <div class="flow">Browser
+  ↓
+https://service.example.com
+  ↓
+Frontend Server
+  ├→ /      → Static Frontend
+  └→ /api/* → Proxy → Backend Server</div>
+</section>
+
+<section class="article-section">
+  <h2>3. 상세 설명</h2>
+  <table class="article-table">
+    <thead><tr><th>항목</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td>Origin 판단</td><td>Browser가 보는 URL의 Scheme, Host, Port가 동일하면 Same-Origin이다. Path는 Origin 구성요소가 아니다. [출처: MDN Web Docs, Same-origin policy]</td></tr>
+      <tr><td>Server 내부 통신</td><td>Browser가 접근하는 외부 Origin과 Proxy 뒤 Backend의 내부 Host/Port는 별개의 관점이다. Server 측 Proxy는 다른 내부 주소로 Request를 전달할 수 있다.</td></tr>
+      <tr><td>CORS와의 관계</td><td>CORS는 Cross-Origin 접근을 HTTP Header로 허용하는 메커니즘이고, Same-Origin API Proxy는 Browser에 동일 Origin으로 노출하는 배포 구성이다. 두 개념은 동일하지 않다. [출처: MDN Web Docs, Cross-Origin Resource Sharing (CORS)]</td></tr>
+      <tr><td>Frontend 호출</td><td>Frontend에서는 fetch("/api/users")처럼 상대경로를 사용할 수 있어 환경별 Backend Host를 Client 코드에 직접 넣지 않는 구성이 가능하다.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="article-section">
+  <h2>4. 예</h2>
+  <h3>NGINX Same-Origin API Proxy</h3>
+  <div class="flow">Browser
+  ↓ https://service.example.com
+Frontend Server
+  ├→ /      → Static Frontend
+  └→ /api/* → NGINX Reverse Proxy → Tomcat + Spring REST API</div>
+  <pre><code>// Frontend
+const response = await fetch("/api/users");
+
+# NGINX
+location /api/ {
+    proxy_pass http://backend-server:8080;
+}</code></pre>
+  <p>Browser가 보는 외부 URL은 https://service.example.com/api/users 이며 내부에서는 Proxy가 별도의 Backend Server로 전달할 수 있다. Same-Origin 판단은 Browser에 노출된 Scheme, Host, Port를 기준으로 한다.</p>
+</section>
+
+<section class="article-section">
+  <h2>5. 출처</h2>
+  <ol class="references">
+    <li>MDN Web Docs, <em>Same-origin policy</em><br><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Same-origin_policy" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Same-origin_policy</a></li>
+    <li>MDN Web Docs, <em>Origin header</em><br><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Origin" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Origin</a></li>
+    <li>MDN Web Docs, <em>Cross-Origin Resource Sharing (CORS)</em><br><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS</a></li>
+    <li>NGINX, <em>Module ngx_http_proxy_module</em><br><a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html" target="_blank" rel="noopener">https://nginx.org/en/docs/http/ngx_http_proxy_module.html</a></li>
+  </ol>
+</section>
+
+        <a class="back-link" href="../blog/index.html">← Engineering Notes</a>
+      </article>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© 2026 withlionbuddha</p>
+      <div><a href="../index.html">Home</a><a href="../blog/index.html">Blog</a></div>
+    </div>
+  </footer>
+</body>
+</html>
