@@ -125,11 +125,11 @@ a {
 }
 
 #certifications {
-  padding-bottom: 24px;
+  padding-bottom: 48px;
 }
 
 #about {
-  padding-top: 24px;
+  padding-top: 48px;
   transform: none;
   margin-bottom: 0;
 }
@@ -331,11 +331,11 @@ a {
   }
 
   #certifications {
-    padding-bottom: 20px;
+    padding-bottom: 32px;
   }
 
   #about {
-    padding-top: 20px;
+    padding-top: 32px;
     transform: none;
     margin-bottom: 0;
   }
