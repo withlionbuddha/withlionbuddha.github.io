@@ -131,6 +131,14 @@ a {
   margin: 0;
 }
 
+#certifications {
+  padding-bottom: 88px;
+}
+
+#about {
+  padding-top: 64px;
+}
+
 .alt {
   background: #f8fafc;
 }
@@ -327,6 +335,14 @@ a {
   #about {
     transform: none;
     margin: 0;
+  }
+
+  #certifications {
+    padding-bottom: 64px;
+  }
+
+  #about {
+    padding-top: 48px;
   }
 
   .card-grid,
