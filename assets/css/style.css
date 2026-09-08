@@ -118,8 +118,9 @@ a {
 
 .homepage-sections {
   display: grid;
-  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 3fr);
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 5fr);
   min-height: 1000px;
+  margin-top: -72px;
 }
 
 .homepage-sections .section {
@@ -317,6 +318,7 @@ a {
   .homepage-sections {
     display: block;
     min-height: 0;
+    margin-top: -32px;
   }
 
   .homepage-sections .section,
