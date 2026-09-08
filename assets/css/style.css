@@ -130,8 +130,8 @@ a {
 
 #about {
   padding-top: 0;
-  transform: translateY(-48px);
-  margin-bottom: -48px;
+  transform: translateY(-120px);
+  margin-bottom: -120px;
 }
 
 .homepage-sections .section-ratio-3 {
@@ -336,8 +336,8 @@ a {
 
   #about {
     padding-top: 0;
-    transform: translateY(-24px);
-    margin-bottom: -24px;
+    transform: translateY(-60px);
+    margin-bottom: -60px;
   }
 
   .card-grid,
